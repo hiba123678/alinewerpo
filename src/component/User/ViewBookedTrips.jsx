@@ -8,7 +8,7 @@ const ViewBookedTrips = () => {
     const fetchBookedTrips = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('/api/booked-trips', {
+        const response = await axios.get('', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

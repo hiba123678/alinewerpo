@@ -6,15 +6,56 @@ import NavBar from './NavBar';
 function ViewTrip() {
    
   
-  const handleBooking = async (id) => {
+  // const handleBooking = (id) => {
+  //   const token = localStorage.getItem('token');
+
+  //   const response =  axios.post('http://localhost:7170/api/Trip/',  {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  // };
+
+
+
+  //const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+  const handleBooking = (tripId) => {
     const token = localStorage.getItem('token');
 
-    const response = await axios.post('http://localhost:7170/api/Trip/${id}',  {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    // if (!loggedIn) {
+    //   // User is not logged in, handle authentication logic here (e.g., redirect to login page)
+    //   console.log('Please log in to book a trip.');
+    //   return;
+    // }
+
+    axios
+      .post('http://localhost:7170/api/Trip/BookTrip', { tripId }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        // Handle the response from the API
+        console.log('Trip booked successfully!', response.data);
+      })
+      .catch((error) => {
+        // Handle any errors that occur during the API request
+        console.error('An error occurred while booking the trip:', error);
+      });
   };
+
+
+
+
+
+
+
+
+
+
+
+
   const tripdata=[
         {id:1,
             From:'syria',
@@ -42,8 +83,8 @@ function ViewTrip() {
     const [data , setData]=useState([]);
     useEffect( ()=>{
     
-        setData(tripdata);
-        // getDat();
+       // setData(tripdata);
+         getDat();
     
     },[])
     const getData=()=>{

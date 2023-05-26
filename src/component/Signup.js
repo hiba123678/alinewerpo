@@ -80,7 +80,7 @@ password: password,
 email: email
 
 };
-const url='';
+const url='https://localhost:7170/api/Account/Register';
 axios.post(url,data).then((result) => {
   if(result.data.statusCode == '200')
   alert('data saved');

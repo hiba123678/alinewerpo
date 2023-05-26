@@ -38,11 +38,11 @@ export default function SignIn() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
+      userName: data.get('userName'),
       password: data.get('password'),
     });
   };
-  const [email, setEmail]=useState('');
+  const [userName, setEmail]=useState('');
   const [password, setPassword]=useState('');
 
   
@@ -55,41 +55,49 @@ export default function SignIn() {
   }
 
 
-  const handelLogin= async (e) => {
-    e.preventDefault();
+  const handelLogin= () => {
+    // e.preventDefault();
     try{
     // e.preventDefault();
-    // const data ={
+    const data ={
 
-    // password: password,
-    // email: email
+    password: password,
+    userName: userName
     
-    // };
+    };
 
-    // const url='';
-    // axios.post(url,data).then((result) => {
-    //   if(result.data.statusCode == '200')
-    //  alert('data saved')
-    
-    //   else
-    //   alert(result.data)
-    // }).catch((error)=>{alert(error);})
-
-
-// new method
-
-const response = await axios.post('', {
-  password,
-  email,
-});
-const { role } = response.data;
-localStorage.setItem('token', response.data.token);
+    const url='https://localhost:7170/api/Account/login';
+    axios.post(url,data).then((result) => {
+      if(result.data.statusCode == '200')
+     {
+      const { role } = 'admin'; //result.result.;
+localStorage.setItem('token', result.data.result.accessToken);
 
 if (role === 'admin') {
   navigate('/dashboard');
 } else {
   navigate('/');
 }
+     }
+      else
+      alert(result.data)
+    }).catch((error)=>{alert(error);})
+
+
+// new method
+
+// const response = await axios.post('https://localhost:7170/api/Account/login', {
+//   password,
+//   email,
+// });
+// const { role } = response.data;
+// localStorage.setItem('token', response.data.token);
+
+// if (role === 'admin') {
+//   navigate('/dashboard');
+// } else {
+//   navigate('/');
+// }
 
     }catch (error) {
       // Handle login error
@@ -130,9 +138,9 @@ if (role === 'admin') {
               margin="normal"
               required
               fullWidth
-              id="email"
+              id="userName"
               label="Email Address"
-              name="email"
+              name="userName"
               autoComplete="email"
               autoFocus
               onChange={(e)=>handeleEmailChange(e.target.value)} />

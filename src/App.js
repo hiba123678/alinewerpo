@@ -40,7 +40,7 @@ function App() {
         />
         
        <Route path="/"  exact element={<PartHome1  /> } />
-       <Route path="/trip" element={<ViewTrip /> } />
+       {/* <Route path="/trip" element={<ViewTrip /> } /> */}
        {/* <Route path="/dashboard" element={<Dashboard /> } /> */}
        {/* <Route path="/dashboard/add"  exact element={<NewTrip1 /> } /> */}
        <Route path="/dashboard"  exact element={<Dashboard /> } />
