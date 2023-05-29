@@ -11,10 +11,10 @@ import  SearchForm from './SearchForm.jsx';
 import  AboutHome from './AboutHome.jsx';
 import Footer from './Footer.jsx';
 import Satisic from './Satisic.jsx';
-import  Destenation from './Destenation.jsx';
+
 import  Benifts from './Benifts.jsx';
 import  Choose from './Choose.jsx';
-import Sliderw from './Sliderw.jsx';
+
 import Company from './Company.jsx';
 import Fly from './Fly';
 import Paper from '@mui/material/Paper';
@@ -22,40 +22,30 @@ import What from './What.jsx';
 import Avatar from '@mui/material/Avatar' ;
 import Beforfoot from './Beforfoot.jsx';
 import NavBar from './NavBar.jsx';
-import ViewTrip from './ViewTrip';import { useRef } from 'react';
+
+import { useRef } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import  ViewBookedTrips from './ViewBookedTrips';
 import SurveyForm from './SurveyForm';
 const styles = {
   paperContainer: {
-      // backgroundImage: `url(${home5})`,
+    
       backgroundColor:'#f6f5ee',
       height:'98vh' ,
-      // backgroundSize: '100% 100%',
-      // resize: 'both',
-      // backgroundRepeat:' no-repeat',
+  
      width:'100%' ,
      paddingTop:'100px',
    
 
   }
 };
-function PartHome1() {
+export default function PartHome1() {
   const sectionRef = useRef(null);
   return (
     <>
 
   <NavBar/>
-        {/*
-     
-
-      
-        <p className=' text-capitalize  text-white mt-3  fw-bolder lh-base' style={{fontSize:"50px"}}>
-          
-        The best flight deals to everywhere, <br/>from anywhere
-          </p>
-        
-    </Box> */}
+    
 <Box></Box>
 <Box  className='d-flex  align-items-center pb-5 '  style={styles.paperContainer} >
 
@@ -73,7 +63,7 @@ Fly with Comfort</p>
 
 
   <Grid item xs={12} md={7} 	sx={{ display: { xs: 'none',md: 'block', sm: 'none' } }}>
-  {/* <img src={home6} style={{width:"130vh", height:"34vh",position: 'absolute', marginLeft:}}/> */}
+ 
   <Avatar variant="square" alt="Example Alt" src={home6} sx={{width:'100%', height:'auto'}} />
  
   </Grid>
@@ -85,8 +75,8 @@ Fly with Comfort</p>
 
 </Box>
 <SearchForm/>
-{/* <SearchForm/><br/><br/> */}
 
+<SurveyForm/>
 
 <AboutHome />
 <Company />
@@ -99,24 +89,7 @@ Fly with Comfort</p>
 <Beforfoot/></div>
 <Footer/>
 
-
-<SurveyForm/>
-
-
-
-
-
-{/* <Sliderw/> */}
-{/* <br/><br/>
-<Fly/>
-<Destenation/>
-<Choose />
-<Benifts/>
-<Satisic/>
-<Footer/> */}
     </>
   )
 }
 
-export default PartHome1;
-// #274291

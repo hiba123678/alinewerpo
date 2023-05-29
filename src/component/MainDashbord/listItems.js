@@ -12,7 +12,7 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import { Link as RouterLink } from 'react-router-dom';
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton component={RouterLink} to="/">
+    <ListItemButton component={RouterLink} to="/dashboard">
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
@@ -24,11 +24,11 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="new trip" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton  component={RouterLink} to="/">
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Customers" />
+      <ListItemText primary="go to home" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>

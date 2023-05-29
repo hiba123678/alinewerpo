@@ -56,9 +56,9 @@ export default function SignIn() {
 
 
   const handelLogin= () => {
-    // e.preventDefault();
+
     try{
-    // e.preventDefault();
+ 
     const data ={
 
     password: password,
@@ -70,37 +70,24 @@ export default function SignIn() {
     axios.post(url,data).then((result) => {
       if(result.data.statusCode == '200')
      {
-      const { role } = 'admin'; //result.result.;
+      const isAdmin =result.data.result.isAdmin; 
 localStorage.setItem('token', result.data.result.accessToken);
 
-if (role === 'admin') {
+if (isAdmin) {
   navigate('/dashboard');
 } else {
   navigate('/');
 }
-     }
-      else
-      alert(result.data)
+} else {
+alert('Login failed. Please try again.');
+}
     }).catch((error)=>{alert(error);})
 
 
-// new method
 
-// const response = await axios.post('https://localhost:7170/api/Account/login', {
-//   password,
-//   email,
-// });
-// const { role } = response.data;
-// localStorage.setItem('token', response.data.token);
-
-// if (role === 'admin') {
-//   navigate('/dashboard');
-// } else {
-//   navigate('/');
-// }
 
     }catch (error) {
-      // Handle login error
+  
       console.log(error);
     }
     

@@ -22,8 +22,8 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
-import NewTrip from './NewTrip';
 
+import  CreatNewTrip from '../MainDashbord/CreatNewTrip';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -177,7 +177,7 @@ function DashboardContent() {
                   <Chart />
                 </Paper>
               </Grid>
-              {/* Recent Deposits */}
+          
               <Grid item xs={12} md={4} lg={3}>
                 <Paper
                   sx={{
@@ -190,10 +190,11 @@ function DashboardContent() {
                   <Deposits />
                 </Paper>
               </Grid>
-              {/* Recent Orders */}
+             
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                <NewTrip/>
+           
+                < CreatNewTrip/>
                 </Paper>
               </Grid>
             </Grid>
