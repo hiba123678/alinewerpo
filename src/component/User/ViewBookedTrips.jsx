@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
-
+import SurveyForm from './SurveyForm';
 import  NavBar from './NavBar';
+import Footer from './Footer';
 const ViewBookedTrips = () => {
   const [bookedTrips, setBookedTrips] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -66,6 +67,11 @@ const ViewBookedTrips = () => {
           </tbody>
         </Table>
       )}
+      <br/>
+      <br/>
+<SurveyForm/>
+<br/><br/><br/><br/>
+<Footer/>
     </div>
   );
 };

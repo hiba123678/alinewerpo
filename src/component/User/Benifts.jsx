@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import benefits1 from  './image/benefits1.png';
 import benefits2 from  './image/benefits2.png';
+
 import Button from '@mui/material/Button';
 import { Element } from 'react-scroll';
 const Benifts = () => {
@@ -23,12 +24,12 @@ const Benifts = () => {
 
         <Grid sx={12} md={6}>
         <p className="fw-bold" style={{fontSize: '16px', fontWeight: '700px', lineHeight: '20px', color:"#a79132"}}>LUXURY CHARTERS</p>
-  <p className=" fw-bolder" style={{fontSize: '50px',color:"#123821"}}>Learn more about private jet benefits
+  <p className=" fw-bolder" style={{fontSize: '50px',color:"#123821"}}>Benefits of Online Airline Ticket Booking Site
 </p>
   
   <p style={{color:'#79817c',fontSize: '16px'}}>
-  Lorem ipsum dolor sit amet, elit. Curabitur condimentum,<br/>
-lacus non faucibus congue.
+  Overall, online airline ticket booking sites provide a convenient<br/> efficient, and cost-effective way to plan and book your air travel.<br/>  Embracing the digital platform empowers you with flexibility<br/>  choices, and the ability to make informed decisions for a smooth<br/>  and enjoyable travel experience.<br/>
+
   </p><br/>
   
   <Button variant="contained" size="large"  className="rounded-pill" style={{backgroundColor:"#a79132" ,height:'65px', width:"250px", marginTop:'15px'}}>Discover Now</Button>
@@ -47,12 +48,12 @@ lacus non faucibus congue.
 
 
 
-        <Grid container className=""  sx={12} md={6}  spacing={2}>
-   
+        <Grid container className="p-5"  sx={12} md={6}  spacing={2}>
+   <img className= "mx-auto" src={benefits1}/>
       
     
 
-      <Box  sx={12} md={6} className="m-1 pt-2"
+      {/* <Box  sx={12} md={6} className="m-1 pt-2"
        style={{
           height: '100PX',
           width: '300px',
@@ -156,7 +157,7 @@ lacus non faucibus congue.
       >
       <p  className="fw-bold" style={{color:'#123821', fontSize:"18px"}}>Proven safety</p>
       <p>Lorem ipsum text</p>
-      </Box>
+      </Box> */}
 
    
         </Grid>

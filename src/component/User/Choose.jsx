@@ -2,8 +2,9 @@ import React from 'react'
 import Box from '@mui/material/Box';
 
 import Grid from '@mui/material/Unstable_Grid2';
-import home4 from './image/home4.jpg';
-import home1 from './image/home1.jpg';
+import b1 from './image/b1.jpg';
+
+import b2 from './image/b2.jpg';
 import home3 from './image/home3.jpg';
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
@@ -31,16 +32,15 @@ const Choose = () => {
         <CardMedia
           component="img"
           height="300"
-          image={home4}
+          image={b1}
           alt="green iguana"
         />
         <CardContent>
           <Typography  className=" fw-bolder" gutterBottom  component="div" sx={{fontSize:'30px',fontWeight: '700px',lineHeight: '34px',color:"#123821",fontFamily:"DM Sans"}}>
-            Lizard
+          For business travelers
           </Typography>
           <Typography  color="text.secondary" sx={{fontSize:'17px',lineHeight: '24px',fontWeight: '400px',fontFamily:"DM Sans"}}>
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+          our private jets provide a seamless and efficient way to reach your destination. Avoid crowded airports and lengthy layovers
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -57,16 +57,15 @@ const Choose = () => {
         <CardMedia
           component="img"
           height="300"
-          image={home1}
+          image={b2}
           alt="green iguana"
         />
         <CardContent>
           <Typography  className=" fw-bolder" gutterBottom  component="div" sx={{fontSize:'30px',fontWeight: '700px',lineHeight: '34px',color:"#123821",fontFamily:"DM Sans"}}>
-            Lizard
+          For leisure travelers
           </Typography>
           <Typography  color="text.secondary" sx={{fontSize:'17px',lineHeight: '24px',fontWeight: '400px',fontFamily:"DM Sans"}}>
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+          Whether you're planning a romantic getaway, a family vacation, our private jets provide a lavish and personalized journey. 
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -88,11 +87,10 @@ const Choose = () => {
         />
         <CardContent>
           <Typography  className=" fw-bolder" gutterBottom  component="div" sx={{fontSize:'30px',fontWeight: '700px',lineHeight: '34px',color:"#123821",fontFamily:"DM Sans"}}>
-            Lizard
+          user-friendly platform
           </Typography>
           <Typography  color="text.secondary" sx={{fontSize:'17px',lineHeight: '24px',fontWeight: '400px',fontFamily:"DM Sans"}}>
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            we  make the booking process quick, convenient, and intuitive. Whether you're a seasoned traveler or booking for the first time
           </Typography>
         </CardContent>
       </CardActionArea>

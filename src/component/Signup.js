@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -41,7 +41,7 @@ export default function SignUp() {
     });
   };
 
-
+  const navigate = useNavigate();
 const [firstName, setFirstName]=useState('');
 const [lastName, setLastName]=useState('');
 const [phoneNumber, setPhoneNumber]=useState('');
@@ -83,9 +83,11 @@ email: email
 const url='https://localhost:7170/api/Account/Register';
 axios.post(url,data).then((result) => {
   if(result.data.statusCode == '200')
-  alert('data saved');
+  {alert('data saved');
+  navigate('/login');}
   else
-  alert(result.data)
+  {
+  alert(result.data)}
 }).catch((error)=>{alert(error);})
 
 }

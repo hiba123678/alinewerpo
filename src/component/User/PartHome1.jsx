@@ -22,14 +22,14 @@ import What from './What.jsx';
 import Avatar from '@mui/material/Avatar' ;
 import Beforfoot from './Beforfoot.jsx';
 import NavBar from './NavBar.jsx';
-
+//  backgroundColor:'#f6f5ee',
 import { useRef } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import  ViewBookedTrips from './ViewBookedTrips';
 import SurveyForm from './SurveyForm';
 const styles = {
   paperContainer: {
-    
+   
       backgroundColor:'#f6f5ee',
       height:'98vh' ,
   
@@ -76,7 +76,6 @@ Fly with Comfort</p>
 </Box>
 <SearchForm/>
 
-<SurveyForm/>
 
 <AboutHome />
 <Company />

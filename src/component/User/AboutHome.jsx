@@ -11,8 +11,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Avatar from '@mui/material/Avatar';
 import LocalShippingSharpIcon from '@mui/icons-material/LocalShippingSharp';
 import AddShoppingCartSharpIcon from '@mui/icons-material/AddShoppingCartSharp';
-
+import { useNavigate } from 'react-router-dom';
 function AboutHome() {
+  const navigate = useNavigate();
+
+  const handleBookNow = () => {
+    navigate('/trip');
+  };
+
   return (
     <Box sx={{ flexGrow: 1,backgroundColor:'#f6f5ee' }}   id="sectionabout">
   
@@ -31,10 +37,10 @@ function AboutHome() {
 
         <Grid item xs={12}sm={12} md={6} sx={{verticalAlign: 'middle'}}>
     <h3 className="fw-bold" style={{fontSize: '16px', fontWeight: '700px', lineHeight: '20px', color:"#a79132"}}>WHAT WILL YOU GET</h3><br/>
-    <h1 className=" fw-bolder" style={{fontSize: '50px',color:"#123821"}}>Private jet for business and leisure purpose</h1><br/>
-    <p style={{color:'#79817c',fontSize: '16px'}}>Non augue egestas, commodo velit eget, vestibulum tellus. Curabitur vulputate justo elit, at elementum orci pulvinar vel.<br/><br/>
+    <h1 className=" fw-bolder" style={{fontSize: '50px',color:"#123821"}}>Welcome to our site where the world is just a click away</h1><br/>
+    <p style={{color:'#79817c',fontSize: '16px'}}>At our online flight ticket booking site, we strive to provide seamless and convenient travel experiences. With a wide range of airlines and destinations, competitive prices<br/><br/>
 
-Pellentesque habitant morbi tristique. Pellentesque habitant morbi tristique. Ut non augue egestas, commodo velit eget, vestibulum tellus.</p>
+and user-friendly interface we are your trusted platform for booking flights. Fly with ease and explore the world with us.</p>
        
        
       <Stack  direction="row" spacing={2}>
@@ -57,8 +63,8 @@ Pellentesque habitant morbi tristique. Pellentesque habitant morbi tristique. Ut
           textAlign: 'center',
         }}
       >
-      <p>Proven safety</p>
-      <p>Lorem ipsum text</p>
+      <p>Safety</p>
+      <p>very high</p>
       </Box>
       <Box
         sx={{
@@ -79,11 +85,11 @@ Pellentesque habitant morbi tristique. Pellentesque habitant morbi tristique. Ut
           textAlign: 'center',
         }}
       >
-        <p>Proven safety</p>
-      <p>Lorem ipsum text</p>
+        <p>Reliability</p>
+      <p>very high</p>
       </Box>
       </Stack> <br/>
-      <Button variant="contained" size="large"  className="rounded-pill" style={{backgroundColor:"#a79132" ,height:'65px', width:"250px"}}>Book Now</Button>
+      <Button variant="contained" size="large"  onClick={handleBookNow} className="rounded-pill" style={{backgroundColor:"#a79132" ,height:'65px', width:"250px"}}>Book Now</Button>
         </Grid>
         
        

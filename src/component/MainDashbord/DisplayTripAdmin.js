@@ -4,10 +4,16 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-
+import Modal from 'react-bootstrap/Modal';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 const DisplayTripAdmin = () => {
   const [trips, setTrips] = useState([]);
-
+  const [show, setShow] = useState(false);
+  const [editFrom, setEditFrom] = useState('');
+  const [editTo, setEditTo] = useState('');
+  const [editDate, setEditDate] = useState('');
+  const [selectedTrip, setSelectedTrip] = useState(null);
   useEffect(() => {
     getTrips();
   }, []);
@@ -35,29 +41,40 @@ const DisplayTripAdmin = () => {
       });
   };
 
-  const handleDeleteTrip = (tripId) => {
-    // axios
-    //   .delete(`/api/Trip/Delete/${tripId}`)
-    //   .then((response) => {
-    //     if (response.data.success) {
-    //       toast.success('Trip deleted successfully!');
-    //       // Perform any additional actions or update UI as needed
-    //       getTrips(); // Refresh the trips list after deletion
-    //     } else {
-    //       console.error('Failed to delete trip');
-    //       toast.error('Failed to delete trip. Please try again.');
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error:', error);
-    //     toast.error('An error occurred while deleting the trip. Please try again.');
-    //   });
-    console.log(tripId)
+  const handleUpdateTrip = (trip) => {
+    setSelectedTrip(trip);
+    setShow(true);
   };
 
-  const handleUpdateTrip = (tripId) => {
-    // Handle update trip logic
-    console.log(`Update trip with id ${tripId}`);
+  const handleClose = () => {
+    setShow(false);
+  };
+
+
+  const handleUpdate = () => {
+    const updatedTrip = {
+      id: selectedTrip.id,
+      from: editFrom,
+      to: editTo,
+      date: editDate,
+    };
+
+    axios
+      .post('https://localhost:7170/api/Trip/Update', updatedTrip)
+      .then((response) => {
+        if (response.data.success) {
+          toast.success('Trip updated successfully');
+          getTrips();
+          handleClose();
+        } else {
+          console.error('Failed to update trip');
+          toast.error('Failed to update trip. Please try again.');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        toast.error('An error occurred while updating trip. Please try again.');
+      });
   };
 
   return (
@@ -81,10 +98,7 @@ const DisplayTripAdmin = () => {
               <td>{trip.to}</td>
               <td>{trip.date}</td>
               <td>
-                <Button variant="danger" onClick={() => handleDeleteTrip(trip.id)}>
-                  Delete
-                </Button>
-                <Button variant="primary" onClick={() => handleUpdateTrip(trip.id)}>
+              <Button variant="primary" onClick={() => handleUpdateTrip(trip)}>
                   Update
                 </Button>
               </td>
@@ -92,6 +106,50 @@ const DisplayTripAdmin = () => {
           ))}
         </tbody>
       </Table>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modify / Edit Trip</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Row>
+            <Col>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter destination 1"
+                value={editFrom}
+                onChange={(e) => setEditFrom(e.target.value)}
+              />
+            </Col>
+            <Col>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter destination 2"
+                value={editTo}
+                onChange={(e) => setEditTo(e.target.value)}
+              />
+            </Col>
+            <Col>
+              <input
+                type="date"
+                className="form-control"
+                placeholder="Enter Date"
+                value={editDate}
+                onChange={(e) => setEditDate(e.target.value)}
+              />
+            </Col>
+          </Row>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleUpdate}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <ToastContainer />
     </div>
   );

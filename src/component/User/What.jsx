@@ -20,10 +20,9 @@ function What() {
   <p className=" fw-bolder" style={{fontSize: '50px',color:"#123821"}}>About The Company
   </p>
   <p style={{color:'#79817c',fontSize: '16px'}}>
-  Lorem ipsum dolor sit amet, elit. Curabitur condimentum,<br/>
-lacus non faucibus congue.<br/>Lorem ipsum dolor sit amet, elit. Curabitur condimentum,<br/>
-lacus non faucibus congue<br/>Lorem ipsum dolor sit amet, elit. Curabitur condimentum,<br/>
-lacus non faucibus congue
+  At our online flight booking company, we are dedicated to providing a seamless and convenient experience for travelers worldwide. With a user-friendly platform, we offer a wide range of flight options from various airlines, ensuring that customers can find the perfect itinerary to suit their needs.
+<br/><br/>
+Booking through our website is incredibly easy and efficient. With just a few simple steps, travelers can search for flights, and secure their tickets in no time
   </p>
         </Grid>
         <Grid item xs={12} md={6}  className="">

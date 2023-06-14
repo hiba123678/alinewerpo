@@ -1,495 +1,423 @@
-import React from 'react'
-import { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import axios from 'axios';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-function SurveyForm() {
-  const [gender, setGender] = useState('');
-  const [customerType, setCustomerType] = useState('');
-  const [age, setAge] = useState('');
-  const [travelType, setTravelType] = useState('');
-  const [travelClass, setTravelClass] = useState('');
-  const [flightDistance, setFlightDistance] = useState('');
-  const [wifiService, setWifiService] = useState('');
-  const [convenience, setConvenience] = useState('');
-  const [onlineBooking, setOnlineBooking] = useState('');
-  const [gateLocation, setGateLocation] = useState('');
-  const [foodAndDrink, setFoodAndDrink] = useState('');
-  const [onlineBoarding, setOnlineBoarding] = useState('');
-  const [seatComfort, setSeatComfort] = useState('');
-  const [inflightEntertainment, setInflightEntertainment] = useState('');
-  const [onboardService, setOnboardService] = useState('');
-  const [legRoom, setLegRoom] = useState('');
-  const [baggageHandling, setBaggageHandling] = useState('');
-  const [checkinService, setCheckinService] = useState('');
-  const [inflightService, setInflightService] = useState('');
-  const [cleanliness, setCleanliness] = useState('');
-  const [departureDelay, setDepartureDelay] = useState('');
-  const [arrivalDelay, setArrivalDelay] = useState('');
+const SurveyForm = () => {
+  const [formData, setFormData] = useState({
+    Gender: "",
+    CustomerType: "",
+    TypeOfTravel: "",
+    Class: "",
+    Age: 0,
+    InflightWifiService: 0,
+    FlightDistance: 0,
+    DepartureArrivalTimeConvenient: 0,
+    EaseOfOnlineBooking: 0,
+    GateLocation: 0,
+    FoodAndDrink: 0,
+    OnlineBoarding: 0,
+    SeatComfort: 0,
+    InflightEntertainment: 0,
+    OnBoardService: 0,
+    LegRoomService: 0,
+    BaggageHandling: 0,
+    CheckinService: 0,
+    InflightService: 0,
+    Cleanliness: 0,
+    DepartureDelayInMinutes:0,
+    ArrivalDelayInMinutes: 0,
+  });
+  const [result, setResult] = useState(null);
 
- 
-
-
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.post('http://your-api-endpoint.com/survey', {
-        gender,
-        customerType,
-        age,
-        travelType,
-        travelClass,
-        flightDistance,
-        wifiService,
-        convenience,
-        onlineBooking,
-        gateLocation,
-        foodAndDrink,
-        onlineBoarding,
-        seatComfort,
-        inflightEntertainment,
-        onboardService,
-        legRoom,
-        baggageHandling,
-        checkinService,
-        inflightService,
-        cleanliness,
-        departureDelay,
-        arrivalDelay
-      });
-
-      console.log('Form submitted successfully');
-      console.log(response.data); // Handle the API response as needed
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    }
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
+    axios
+      .post('https://localhost:7170/api/Passenger/PassengerOpinion', formData)
+      .then((response) => {
+        // Handle success response if needed
+        console.log(response.data);
+        setResult(response.data.result);
 
+      })
 
+      .catch((error) => {
+        // Handle error if needed
+        console.error(error);
+      });
 
-
-
-
-
-
-
-
-
+    // Reset form data
+    setFormData({
+      Gender: "",
+      CustomerType: "",
+      TypeOfTravel: "",
+      Class: "",
+      Age: 0,
+      InflightWifiService: 0,
+      FlightDistance: 0,
+      DepartureArrivalTimeConvenient: 0,
+      EaseOfOnlineBooking: 0,
+      GateLocation: 0,
+      FoodAndDrink: 0,
+      OnlineBoarding: 0,
+      SeatComfort: 0,
+      InflightEntertainment: 0,
+      OnBoardService: 0,
+      LegRoomService: 0,
+      BaggageHandling: 0,
+      CheckinService: 0,
+      InflightService: 0,
+      Cleanliness: 0,
+      DepartureDelayInMinutes: 0,
+      ArrivalDelayInMinutes: 0,
+    });
+  };
 
   return (
+    <Container className='border border-3 border-black p-5 w-50 shadow-lg p-3 mb-5 bg-body-tertiary rounded'>
+    <h1 className='text-center fw-semibold'>Rate our trip</h1><br/><br/>
+    <Form onSubmit={handleSubmit}>
+    <Row>
+        <Col>
+      <Form.Group controlId="Gender">
+        <Form.Label>Select Gender</Form.Label>
+        <Form.Control as="select" name="Gender" value={formData.Gender} onChange={handleChange} required>
+       
+          <option value="Female">Female</option>
+          <option value="Male">Male</option>
+        </Form.Control>
+      </Form.Group>
+        </Col>
 
-    <Container >
-    <div>      <Form onSubmit={handleSubmit}>
-
-
-    <Row >
-    <Col  xs={12} md={6}>
-    <Form.Group controlId="gender">
-      <Form.Label>Gender:</Form.Label>
-      <Form.Select value={gender} onChange={(e) => setGender(e.target.value)}>
-        <option value="">Select Gender</option>
-        <option value="Female">Female</option>
-        <option value="Male">Male</option>
-      </Form.Select>
-    </Form.Group>
+        <Col> 
+      <Form.Group controlId="CustomerType">
+        <Form.Label>Select Customer Type</Form.Label>
+        <Form.Control as="select" name="CustomerType" value={formData.CustomerType} onChange={handleChange} required>
+      
+          <option value="Loyal Customer">Loyal Customer</option>
+          <option value="disloyal Customer">disloyal Customer</option>
+        </Form.Control>
+      </Form.Group>
 </Col>
-<Col  xs={12} md={6}>
-    <Form.Group controlId="customerType">
-      <Form.Label>Customer Type:</Form.Label>
-      <Form.Select value={customerType} onChange={(e) => setCustomerType(e.target.value)}>
-        <option value="">Select Customer Type</option>
-        <option value="disloyal Customer">Disloyal Customer</option>
-        <option value="Loyal Customer">Loyal Customer</option>
-      </Form.Select>
-    </Form.Group>
-    </Col>
-    </Row>
+
+
+<Col>
+      <Form.Group controlId="Age">
+  <Form.Label>Select Age</Form.Label>
+
+  <Form.Control type="number"  min="0"
+          max="100" name="Age" value={formData.Age} onChange={handleChange} required/>
+  
+</Form.Group>
+</Col>
+
+
+<Col>
+
+      <Form.Group controlId="TypeOfTravel">
+        <Form.Label>Select Travel Type</Form.Label>
+        <Form.Control as="select" name="TypeOfTravel" value={formData.TypeOfTravel} onChange={handleChange} required>
+     
+          <option value="Business travel">Business travel</option>
+          <option value="Personal Travel">Personal Travel</option>
+        </Form.Control>
+      </Form.Group>
+      </Col>
+      </Row>
+
 
 
 <Row>
-  <Col xs={12} md={6}>
-    <Form.Group controlId="age">
-      <Form.Label>Age:</Form.Label>
-      <Form.Select value={age} onChange={(e) => setAge(e.target.value)}>
-        <option value="">Select Age</option>
-        <option value="child">Child</option>
-        <option value="adult">Adult</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-    <Col xs={12} md={6}>
-    <Form.Group controlId="travelType">
-      <Form.Label>travelType:</Form.Label>
-      <Form.Select value={travelType} onChange={(e) =>  setTravelType(e.target.value)}>
-        <option value="">Select travel Type</option>
-        <option value="child">Business travel</option>
-        <option value="adult">Personal Travel</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-
-    </Row>
-
-    <Row>
-<Col xs={12} md={6}>
-    <Form.Group controlId="travelClass">
-        <Form.Label>travelClass:</Form.Label>
-        <div>
-          <Form.Check
-            inline
-            type="radio"
-            label="Eco"
-            name="travelClass"
-            value="Eco"
-            checked={gender === 'Eco'}
-            onChange={(e) =>  setTravelClass(e.target.value)}
-          />
-          <Form.Check
-            inline
-            type="radio"
-            label="Business"
-            name="travelClass"
-            value="Business"
-            checked={gender === 'Business'}
-            onChange={(e) =>  setTravelClass(e.target.value)}
-          />
-        </div>
+  <Col>
+      <Form.Group controlId="Class">
+        <Form.Label>Select Travel Class</Form.Label>
+        <Form.Control as="select" name="Class" value={formData.Class} onChange={handleChange} required>
+       
+          <option value="Eco">Eco</option>
+          <option value="Business">Business</option>
+        </Form.Control>
       </Form.Group>
       </Col>
- 
 
-      <Col xs={12} md={6}>
+      <Col>
       <Form.Group controlId="FlightDistance">
-      <Form.Label>Flight Distance:</Form.Label>
-      <Form.Select value={flightDistance} onChange={(e) =>  setFlightDistance(e.target.value)}>
-        <option value="">Select Flight Distance</option>
-        <option value="less than or equal 1000">less than or equal 1000</option>
-        <option value="less than or equal 2000">less than or equal 2000</option>
-        <option value="less than or equal 3000">less than or equal 3000</option>
-      </Form.Select>
-    </Form.Group>
+  <Form.Label>Select Flight Distance</Form.Label>
+  <Form.Control   type="number"
+          min="0"
+          max="3000"
+           name="FlightDistance" value={formData.FlightDistance} onChange={handleChange} required>
+   
+ 
+  </Form.Control>
+</Form.Group>
+</Col>
+
+
+<Col>
+
+      <Form.Group controlId="InflightWifiService">
+        <Form.Label>Select WiFi Service</Form.Label>
+        <Form.Control as="select" name="InflightWifiService" value={formData.InflightWifiService} onChange={handleChange} required>
+       
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </Form.Control>
+      </Form.Group>
       </Col>
 
+      <Col>
+      <Form.Group controlId="DepartureArrivalTimeConvenient">
+        <Form.Label>Select Convenience</Form.Label>
+        <Form.Control as="select" name="DepartureArrivalTimeConvenient" value={formData.DepartureArrivalTimeConvenient} onChange={handleChange} required>
+       
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </Form.Control>
+      </Form.Group>
+      </Col>
+      </Row>
+
+
+<Row>
+  <Col>
+      <Form.Group controlId="EaseOfOnlineBooking">
+        <Form.Label>Select Online Booking</Form.Label>
+        <Form.Control as="select" name="EaseOfOnlineBooking" value={formData.EaseOfOnlineBooking} onChange={handleChange} required>
+       
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </Form.Control>
+      </Form.Group>
+      </Col>
+      <Col>
+      <Form.Group controlId="GateLocation">
+        <Form.Label>Select Gate Location</Form.Label>
+        <Form.Control as="select" name="GateLocation" value={formData.GateLocation} onChange={handleChange} required>
+       
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </Form.Control>
+      </Form.Group>
+      </Col>
+
+      <Col>
+      <Form.Group controlId="FoodAndDrink">
+        <Form.Label>Select Food and Drink</Form.Label>
+        <Form.Control as="select" name="FoodAndDrink" value={formData.FoodAndDrink} onChange={handleChange} required>
+        
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </Form.Control>
+      </Form.Group>
+      </Col>
+
+      <Col>
+      <Form.Group controlId="OnlineBoarding">
+        <Form.Label>Select Online Boarding</Form.Label>
+        <Form.Control as="select" name="OnlineBoarding" value={formData.OnlineBoarding} onChange={handleChange} required>
+      
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </Form.Control>
+      </Form.Group>
+      </Col>
+      </Row>
+
+
+<Row>
+  <Col>
+      <Form.Group controlId="SeatComfort">
+        <Form.Label>Select Seat Comfort</Form.Label>
+        <Form.Control as="select" name="SeatComfort" value={formData.SeatComfort} onChange={handleChange} required>
+       
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </Form.Control>
+      </Form.Group>
+      </Col>
+
+      <Col>
+      <Form.Group controlId="InflightEntertainment">
+        <Form.Label>Select Inflight Entertainment</Form.Label>
+        <Form.Control as="select" name="InflightEntertainment" value={formData.InflightEntertainment} onChange={handleChange} required>
+     
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </Form.Control>
+      </Form.Group>
+      </Col>
+
+      <Col>
+      <Form.Group controlId="OnBoardService">
+        <Form.Label>Select Onboard Service</Form.Label>
+        <Form.Control as="select" name="OnBoardService" value={formData.OnBoardService} onChange={handleChange} required>
+      
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </Form.Control>
+      </Form.Group>
+      </Col>
+      <Col>
+      <Form.Group controlId="LegRoomService">
+        <Form.Label>Select Leg Room</Form.Label>
+        <Form.Control as="select" name="LegRoomService" value={formData.LegRoomService} onChange={handleChange} required>
+      
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </Form.Control>
+      </Form.Group>
+      </Col>
+      </Row>
+
+      <Row>
+        <Col>
+      <Form.Group controlId="BaggageHandling">
+        <Form.Label>Select Baggage Handling</Form.Label>
+        <Form.Control as="select" name="BaggageHandling" value={formData.BaggageHandling} onChange={handleChange} required>
+       
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </Form.Control>
+      </Form.Group>
+      </Col>
+      <Col>
+      <Form.Group controlId="CheckinService">
+        <Form.Label>Select Check-in Service</Form.Label>
+        <Form.Control as="select" name="CheckinService" value={formData.CheckinService} onChange={handleChange}required>
+     
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </Form.Control>
+      </Form.Group>
+      </Col>
+
+      <Col>
+      <Form.Group controlId="InflightService">
+        <Form.Label>Select Inflight Service</Form.Label>
+        <Form.Control as="select" name="InflightService" value={formData.InflightService} onChange={handleChange} required>
+    
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </Form.Control>
+      </Form.Group>
+      </Col>
+      <Col>
+      <Form.Group controlId="Cleanliness">
+        <Form.Label>Select Cleanliness</Form.Label>
+        <Form.Control as="select" name="Cleanliness" value={formData.Cleanliness} onChange={handleChange} required>
+        
+          <option value={0}>0</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </Form.Control>
+      </Form.Group>
+      </Col>
       </Row>
 
 
 
       <Row>
-  <Col xs={12} md={6}>
-    <Form.Group controlId="wifiService">
-      <Form.Label>wifiService:</Form.Label>
-      <Form.Select value={wifiService} onChange={(e) =>  setWifiService(e.target.value)}>
-        <option value="wifiService">Select wifiService</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-    <Col xs={12} md={6}>
-    <Form.Group controlId="convenience">
-      <Form.Label>convenience:</Form.Label>
-      <Form.Select value={convenience} onChange={(e) => setConvenience(e.target.value)}>
-        <option value="">Select convenience</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-
-    </Row>
-
-   
-
-    <Row>
-  <Col xs={12} md={6}>
-    <Form.Group controlId="onlineBooking">
-      <Form.Label>onlineBooking:</Form.Label>
-      <Form.Select value={onlineBooking} onChange={(e) =>   setOnlineBooking(e.target.value)}>
-        <option value="onlineBooking">Select onlineBooking</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-    <Col xs={12} md={6}>
-    <Form.Group controlId="gateLocation">
-      <Form.Label>gateLocation:</Form.Label>
-      <Form.Select value={gateLocation} onChange={(e) =>  setGateLocation(e.target.value)}>
-        <option value="">Select convenience</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-
-    </Row>
-
-
-
-
-
-    <Row>
-  <Col xs={12} md={6}>
-    <Form.Group controlId="foodAndDrink">
-      <Form.Label>foodAndDrink:</Form.Label>
-      <Form.Select value={foodAndDrink} onChange={(e) =>   setFoodAndDrink(e.target.value)}>
-        <option value="foodAndDrink">Select foodAndDrink</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-    <Col xs={12} md={6}>
-    <Form.Group controlId="onlineBoarding">
-      <Form.Label>onlineBoarding:</Form.Label>
-      <Form.Select value={onlineBoarding} onChange={(e) =>  setOnlineBoarding(e.target.value)}>
-        <option value="">SelectonlineBoarding</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-
-    </Row>
-
-
-
-
-
-
-
-
-    <Row>
-  <Col xs={12} md={6}>
-    <Form.Group controlId="seatComfort">
-      <Form.Label>seatComfortk:</Form.Label>
-      <Form.Select value={seatComfort} onChange={(e) =>  setSeatComfort(e.target.value)}>
-        <option value="seatComfort">Select seatComfort</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-    <Col xs={12} md={6}>
-    <Form.Group controlId="inflightEntertainment">
-      <Form.Label>inflightEntertainment:</Form.Label>
-      <Form.Select value={inflightEntertainment} onChange={(e) =>  setInflightEntertainment(e.target.value)}>
-        <option value="">Select inflightEntertainment</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-
-    </Row>
-
-
-
-    <Row>
-  <Col xs={12} md={6}>
-    <Form.Group controlId="onboardService">
-      <Form.Label>onboardService:</Form.Label>
-      <Form.Select value={onboardService} onChange={(e) =>   setOnboardService(e.target.value)}>
-        <option value="onboardService">Select onboardService</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-    <Col xs={12} md={6}>
-    <Form.Group controlId="legRoom">
-      <Form.Label>legRoom:</Form.Label>
-      <Form.Select value={legRoom} onChange={(e) =>  setLegRoom(e.target.value)}>
-        <option value="">Select legRoom</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-
-    </Row>
-
-
-
-
-    <Row>
-  <Col xs={12} md={6}>
-    <Form.Group controlId="baggageHandling">
-      <Form.Label>baggageHandling:</Form.Label>
-      <Form.Select value={baggageHandling} onChange={(e) =>   setBaggageHandling(e.target.value)}>
-        <option value="baggageHandling">Select baggageHandling</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-    <Col xs={12} md={6}>
-    <Form.Group controlId="checkinService">
-      <Form.Label>checkinService:</Form.Label>
-      <Form.Select value={checkinService} onChange={(e) =>   setCheckinService(e.target.value)}>
-        <option value="">Select checkinService</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-
-    </Row>
-
-
-
-
-    <Row>
-  <Col xs={12} md={6}>
-    <Form.Group controlId="inflightService">
-      <Form.Label>inflightService:</Form.Label>
-      <Form.Select value={inflightService} onChange={(e) =>  setInflightService(e.target.value)}>
-        <option value="inflightService">Select inflightService</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-    <Col xs={12} md={6}>
-    <Form.Group controlId="cleanliness">
-      <Form.Label>cleanliness:</Form.Label>
-      <Form.Select value={cleanliness} onChange={(e) =>   setCleanliness(e.target.value)}>
-        <option value="">Select cleanliness</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-
-    </Row>
-
-
-
-
-
-    <Row>
-  <Col xs={12} md={6}>
-    <Form.Group controlId="departureDelay">
-      <Form.Label>departureDelay:</Form.Label>
-      <Form.Select value={departureDelay} onChange={(e) =>  setDepartureDelay(e.target.value)}>
-        <option value="departureDelay">SelectdepartureDelay</option>
-        <option value="less than or equal 15 ">less than or equal 15 </option>
-        <option value="less than or equal 30 ">less than or equal 30 </option>
-        <option value="less than or equal 45 ">less than or equal 45 </option>
-        <option value="more than 60">more than 60</option>
-       
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-    <Col xs={12} md={6}>
-    <Form.Group controlId="arrivalDelay">
-      <Form.Label>arrivalDelay:</Form.Label>
-      <Form.Select value={arrivalDelay} onChange={(e) =>   setArrivalDelay(e.target.value)}>
-        <option value="">Select arrivalDelay</option>
-        <option value="less than or equal 15 ">less than or equal 15 </option>
-        <option value="less than or equal 30 ">less than or equal 30 </option>
-        <option value="less than or equal 45 ">less than or equal 45 </option>
-        <option value="more than 60">more than 60</option>
-      </Form.Select>
-    </Form.Group>
-    </Col> 
-
-
-    </Row>
-
-
-
-<br/>
-
-    {/* Continue adding the remaining form fields based on the provided data set */}
-
-    <Button variant="primary" type="submit">
-      Submit
-    </Button>
-  </Form>
-    </div>
+      <Col>
+      <Form.Group controlId="DepartureDelayInMinutes">
+        <Form.Label>Select Departure Delay</Form.Label>
+        <Form.Control type="number"  min="0"
+       name="DepartureDelayInMinutes" value={formData.DepartureDelayInMinutes} onChange={handleChange} required/>
+      </Form.Group>
+</Col>
+<Col>
+      <Form.Group controlId="ArrivalDelayInMinutes">
+        <Form.Label>Select Arrival Delay</Form.Label>
+        <Form.Control type="number"  min="0"
+       name="ArrivalDelayInMinutes" value={formData.ArrivalDelayInMinutes} onChange={handleChange} required/>
+      </Form.Group>
+      </Col>
+      </Row>
+      <br/>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+     
+    </Form>
+    {result && (
+        <div>
+          <h2>Result:</h2>
+          <h4>Satisfied: {result.satisfied}</h4>
+          <h4>Disatisfied: {result.disatisfied}</h4>
+   {result.satisfied > result.disatisfied ? (
+      <h2>you are Satisfied</h2>
+    ) : (
+      <h2>you are Disatisfied</h2>
+    )}
+        </div>
+      )}
     </Container>
-  )
+  );
 }
 
 export default SurveyForm;
-

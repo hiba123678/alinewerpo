@@ -14,26 +14,26 @@ const Satisic = () => {
     <Grid container spacing={2}  className='d-flex align-items-center'>
 
     <Grid xs={12} md={3}>
-<p className='fw-bold fs-1 text-center' style={{color:"#ffffff"}}>395</p>
+<p className='fw-bold fs-1 text-center' style={{color:"#ffffff"}}>100</p>
 
-<p className=' fs-4 text-center' style={{color:"#ffffff"}}>Professional pilots</p>
+<p className=' fs-4 text-center' style={{color:"#ffffff"}}>Reliable partners</p>
     </Grid>
 
 
 
     <Grid xs={12} md={3}><p className='fw-bold fs-1 text-center' style={{color:"#ffffff"}}>395</p>
 
-<p className=' fs-4 text-center' style={{color:"#ffffff"}}>Professional pilots</p>
+<p className=' fs-4 text-center' style={{color:"#ffffff"}}>Reservation Process</p>
     </Grid>
 
-    <Grid xs={12} md={3}><p className='fw-bold fs-1 text-center' style={{color:"#ffffff"}}>395</p>
+    <Grid xs={12} md={3}><p className='fw-bold fs-1 text-center' style={{color:"#ffffff"}}>300</p>
 
-<p className=' fs-4 text-center' style={{color:"#ffffff"}}>Professional pilots</p>
+<p className=' fs-4 text-center' style={{color:"#ffffff"}}>Happy clients</p>
     </Grid>
 
-    <Grid xs={12} md={3}><p className='fw-bold fs-1 text-center' style={{color:"#ffffff"}}>395</p>
+    <Grid xs={12} md={3}><p className='fw-bold fs-1 text-center' style={{color:"#ffffff"}}>200</p>
 
-<p className=' fs-4 text-center' style={{color:"#ffffff"}}>Professional pilots</p>
+<p className=' fs-4 text-center' style={{color:"#ffffff"}}>Good rating</p>
     </Grid>
 
 

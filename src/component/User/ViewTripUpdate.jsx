@@ -1,9 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import  NavBar from './NavBar';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import Footer from './Footer';
 const ViewTripUpdate = () => {
   const [trips, setTrips] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -111,6 +111,8 @@ const ViewTripUpdate = () => {
           )}
         </tbody>
       </Table>
+      <br/> <br/> <br/> <br/> <br/>
+      <Footer/>
     </>
   );
 };
